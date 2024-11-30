@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AbuelosVsNietos</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script defer src="/static/app.js"></script>
+  </head>
+  <body>
+    <h1>Abuelos Vs Nietos</h1>
+
+    <div id="mainScreen" class="screen active">
+      <div class="tabs">
+        <div class="tab active" data-tab="juegos">Juegos</div>
+        <div class="tab" data-tab="comunicacion">Comunicación</div>
+        <div class="tab" data-tab="clasificacion">Clasificación</div>
+      </div>
+
+      <div id="juegos" class="tab-content active">
+        <div class="card">
+          <div class="card-title">Minijuegos</div>
+          <div class="card-description">
+            Juega y gana puntos con tu familiar
+          </div>
+          <div class="game-buttons">
+            <button
+              class="game-button"
+              onclick="location.href='/static/piedra-game.html'"
+            >
+              Jugar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="comunicacion" class="tab-content">
+        <div class="card">
+          <div class="card-title">Comunicación</div>
+          <div class="card-description">Envía mensajes a tu familiar</div>
+          <input
+            type="text"
+            id="mensajeInput"
+            placeholder="Escribe tu mensaje aquí"
+          />
+        </div>
+        <div>
+          <button class="game-button" onclick="enviarMensaje()">Enviar</button>
+        </div>
+      </div>
+
+      <div id="clasificacion" class="tab-content">
+        <div class="card">
+          <div class="card-title">Tabla de Clasificación</div>
+          <div class="card-description">Compara tus puntos con tu familiar</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Jugador</th>
+                <th>Puntos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img
+                    src="https://img.freepik.com/vector-premium/personaje-dibujos-animados-abuelo-nieta_1308-133468.jpg"
+                    alt="Abuelo"
+                    class="avatar"
+                  />Abuelo
+                </td>
+                <td id="puntosAbuelo">0</td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="https://img.freepik.com/free-vector/couple-children-cartoon-character_1308-69300.jpg"
+                    alt="Nieto"
+                    class="avatar"
+                  />Nieto
+                </td>
+                <td id="puntosNieto">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

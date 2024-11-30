@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AbuelosVsNietos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>App de Cuidado Familiar</h1>
+
+    <div id="mainScreen" class="screen active">
+      <div class="card">
+        <div class="card-title">Piedra, Papel o Tijera</div>
+        <div class="card-description">Elige quién va a jugar:</div>
+        <div class="game-buttons">
+          <button class="game-button" onclick="iniciarJuego('abuelo')">
+            Jugar como Abuelo
+          </button>
+          <button class="game-button" onclick="iniciarJuego('nieto')">
+            Jugar como Nieto
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="abueloScreen" class="screen">
+      <div class="card">
+        <div class="card-title">Turno del Abuelo</div>
+        <div class="card-description">Elige tu jugada:</div>
+        <div class="game-buttons">
+          <button
+            class="game-button"
+            onclick="elegirOpcion('abuelo', 'piedra')"
+          >
+            ✊ Piedra
+          </button>
+          <button class="game-button" onclick="elegirOpcion('abuelo', 'papel')">
+            ✋ Papel
+          </button>
+          <button
+            class="game-button"
+            onclick="elegirOpcion('abuelo', 'tijera')"
+          >
+            ✌️ Tijera
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="nietoScreen" class="screen">
+      <div class="card">
+        <div class="card-title">Turno del Nieto</div>
+        <div class="card-description">Elige tu jugada:</div>
+        <div class="game-buttons">
+          <button class="game-button" onclick="elegirOpcion('nieto', 'piedra')">
+            ✊ Piedra
+          </button>
+          <button class="game-button" onclick="elegirOpcion('nieto', 'papel')">
+            ✋ Papel
+          </button>
+          <button class="game-button" onclick="elegirOpcion('nieto', 'tijera')">
+            ✌️ Tijera
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mostrarGanadorContainer" class="screen hidden">
+      <button class="game-button" onclick="determinarGanador()">
+        Mostrar Ganador
+      </button>
+    </div>
+
+    <div id="resultScreen" class="screen">
+      <div class="card">
+        <div class="card-title">Resultado</div>
+        <div id="result"></div>
+        <div class="score">
+          <span>Abuelo: <span id="puntosAbuelo">0</span></span>
+          <span>Nieto: <span id="puntosNieto">0</span></span>
+        </div>
+        <div class="game-buttons">
+          <button class="game-button" onclick="volverAlInicio()">
+            Jugar de nuevo
+          </button>
+        </div>
+        <div class="game-buttons">
+          <button
+            class="game-button"
+            onclick="location.href='/static/index.html'"
+          >
+            Volver
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="ppt.js"></script>
+  </body>
+</html>

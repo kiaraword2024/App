@@ -1,0 +1,263 @@
+:root {
+  --primary-color: #4a9ee2;
+  --secondary-color: #f0f4f8;
+  --text-color: #333333;
+  --background-color: #ffffff;
+  --accent-color: #5cb85c;
+  --border-color: #d1d9e6;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #2e79db;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 15px 25px;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  border-radius: 15px 5px 0 0;
+  font-size: 1.1em;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.tab.active {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .tab {
+    flex: 1 0 40%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+.tab-content {
+  display: none;
+  padding: 25px;
+  border: 2px solid var(--border-color);
+  border-radius: 0 0 5px 5px;
+  background-color: var(--background-color);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.card {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.card-description {
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3a7bc8;
+}
+
+input[type="text"] {
+  width: calc(100% - 15px);
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+@media (min-width: 769px) {
+  input[type="text"] {
+    width: 70%;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+th,
+td {
+  padding: 15px;
+  border: 2px solid var(--border-color);
+  text-align: left;
+}
+
+th {
+  background-color: var(--secondary-color);
+  font-size: 1.1em;
+  color: var(--primary-color);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #3a7bc8;
+  text-decoration: none;
+}
+
+button:focus,
+input:focus,
+.tab:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .card,
+  .tab-content {
+    padding: 15px;
+  }
+
+  button,
+  input[type="text"] {
+    width: 100%;
+  }
+
+  table,
+  th,
+  td {
+    font-size: 0.9em;
+  }
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+/* sirve para esconder el boton de mostrar ganador  */
+.hidden {
+  display: none;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.game-button {
+  width: 100%;
+  font-size: 35px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.game-button:hover {
+  background-color: #3a7bc8;
+}
+
+#result {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  font-size: 20px;
+}
