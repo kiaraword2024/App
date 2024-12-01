@@ -27,16 +27,29 @@ function guardarPuntos(scoreData) {
 function leerPuntos() {
   try {
     if (!fs.existsSync(SCORES_FILE)) {
-      // Si el archivo no existe, inicializar con datos predeterminados
       guardarPuntos(scoreData);
     }
-    const data = fs.readFileSync(SCORES_FILE, "utf-8");
     console.log("Ok leido");
-    return JSON.parse(data);
+    return JSON.parse(fs.readFileSync(SCORES_FILE, "utf-8"));
+
   } catch (error) {
     console.error("Error al leer puntos:", error);
-    return { abuelo: 0, nieto: 0 }; // Estado predeterminado en caso de error
+
   }
+}
+const MESSAGES_FILE = path.join(__dirname, "api", "message", "mensajes.json");
+
+function guardarMensaje(mensaje) {
+  const mensajes = leerMensajes();
+  mensajes.push(mensaje);
+  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(mensajes, null, 2), "utf-8");
+}
+
+function leerMensajes() {
+  if (!fs.existsSync(MESSAGES_FILE)) {
+    fs.writeFileSync(MESSAGES_FILE, JSON.stringify([]), "utf-8");
+  }
+  return JSON.parse(fs.readFileSync(MESSAGES_FILE, "utf-8"));
 }
 
 // Servidor HTTP
@@ -94,6 +107,23 @@ const server = http.createServer((req, res) => {
         console.error("Error al procesar los datos:", error);
         res.writeHead(404, { "Content-Type": "text/plain" });
         res.end("404 Not Found");
+      }
+    });
+  } else if (req.url === "/api/message" && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      try {
+        const { mensaje } = JSON.parse(body);
+        if (!mensaje) throw new Error("Mensaje vacío");
+        guardarMensaje(mensaje);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: true }));
+      } catch (error) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: false, error: error.message }));
       }
     });
   } else {
