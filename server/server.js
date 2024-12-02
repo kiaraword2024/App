@@ -12,31 +12,38 @@ const MIME_TYPES = {
 };
 
 const SCORES_FILE = path.join(__dirname, "api", "score", "puntos.json");
-let scoreData = { abuelo: 0, nieto: 0 };
-
+let scoreData = {abuelo:0,nieto:0}
 // Función para guardar puntos
 function guardarPuntos(scoreData) {
-  try {
-    fs.writeFileSync(SCORES_FILE, JSON.stringify(scoreData, null, 2), "utf-8");
-    console.log("Ok escrito");
-  } catch (error) {
-    console.error("Error al guardar puntos:", error);
-  }
+  fs.writeFileSync(SCORES_FILE, JSON.stringify(scoreData, null, 2), "utf-8");
+  console.log("ok escrito");
 }
+
 // Función para leer puntos
 function leerPuntos() {
-  try {
-    if (!fs.existsSync(SCORES_FILE)) {
-      guardarPuntos(scoreData);
+  if (!fs.existsSync(SCORES_FILE)) {
+    guardarPuntos(scoreData); }
+   else{
+     return JSON.parse(fs.readFileSync(SCORES_FILE, "utf-8"));
     }
-    console.log("Ok leido");
-    return JSON.parse(fs.readFileSync(SCORES_FILE, "utf-8"));
+    console.log("ok leido")
+ }
 
-  } catch (error) {
-    console.error("Error al leer puntos:", error);
-
-  }
+// Función para guardar mensajes
+function guardarMensaje(mensaje) {
+  let mensajes = leerMensajes();
+  mensajes.push(mensaje);
+  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(mensajes, null, 2), "utf-8");
 }
+
+// Función para leer mensajes
+function leerMensajes() {
+  if (!fs.existsSync(MESSAGES_FILE)) {
+    fs.writeFileSync(MESSAGES_FILE, JSON.stringify([]), "utf-8");
+  }
+  return JSON.parse(fs.readFileSync(MESSAGES_FILE, "utf-8"));
+}
+
 const MESSAGES_FILE = path.join(__dirname, "api", "message", "mensajes.json");
 
 function guardarMensaje(mensaje) {
